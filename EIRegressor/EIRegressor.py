@@ -144,7 +144,7 @@ class EIRegressor:
         """
         bins = []
         if len(self.bins) == 3:
-            bins = np.append(min(y_test)-1, self.bins[1], max(y_test)+1)
+            bins = np.append(int(min(y_test)-1), np.append(self.bins[1], int(max(y_test)+1)))
         else:
             bins = np.append(
                 min(y_test)-1, np.append(self.bins[1:-1], max(y_test)+1))
