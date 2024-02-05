@@ -6,6 +6,9 @@ from EIRegressor.EIRegressor import EIRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 
 def main():
+    N_BUCKETS = 3
+    BUCKETING = "quantile"
+    
     # Load dataframe
     data = pd.read_csv("data/insurance.csv")
     target = "charges"
@@ -23,7 +26,7 @@ def main():
 
     EIgb = EIRegressor(xgb_regressor,
                         reg_args={"loss": "absolute_error", "n_estimators": 300},
-                        n_buckets=3, bucketing_method="quantile", max_iter=4000, lossfn="MSE",
+                        n_buckets=N_BUCKETS, bucketing_method=BUCKETING, max_iter=4000, lossfn="MSE",
                         min_dloss=0.0001, lr=0.005, precompute_rules=True,
                         force_precompute=True, device="cuda")
 
